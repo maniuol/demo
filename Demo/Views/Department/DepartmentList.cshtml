@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Demo.Pocos.ViewModalDepartment>
+@{
+    ViewBag.Title = "DepartmentList";
+}
+
+<h2>DepartmentList</h2>
+<div class="modal fade" id="DepartmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header @*bg-theme1*@">
+                <h5 class="modal-title" id="exampleModalLabel1">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Do you want to delete this record?<br />
+                <div style="text-align:right">
+                    <input type="button" id="btndeptYes" class="btn btn-danger" value="Yes" onclick="DeleteDepartment()" />
+                    <input type="button" id="btndeptNo" class="btn btn-default" value="No" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Hidden("deptid")
+@Html.ActionLink("Add New Department", "AddDepartment", null, new { @class = "btn btn-info" })
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <table class=" table  table-responsive">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Id)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th>@Html.DisplayNameFor(model => model.Address)</th>
+                    <th>@Html.DisplayNameFor(model => model.TotalUsers)</th>
+                    <th>@Html.DisplayNameFor(model => model.Active)</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+
+                </tr>
+                @foreach (var department in Model)
+                {
+                <tr id="row_@Html.DisplayFor(z=>department.Id)">
+                    <td>@Html.DisplayFor(z => department.Id)</td>
+                    <td>@Html.DisplayFor(z => department.Description)</td>
+                    <td>@Html.DisplayFor(z => department.Address)</td>
+                    <td>@Html.DisplayFor(z => department.TotalUsers)</td>
+                    <td>@Html.DisplayFor(z => department.Active)</td>
+
+                    <td>@Html.ActionLink("Edit", "EditDepartment", new { id = department.Id }, new { @class = "btn btn-success" })</td>
+                    <td><input type="button" id="btndeptDelete" class="btn btn-danger" value="Delete" onclick="confirmationDepartment(@department.Id)" /></td>
+                </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+

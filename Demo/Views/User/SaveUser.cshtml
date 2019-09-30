@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "SaveUser";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <form id="user">
+                @Html.AntiForgeryToken()
+                <label>FirstName</label>
+                <input type="text" id="txtFName" name="FirstName" class="form-control" />
+                <label>LastName</label>
+                <input type="text" id="txtLName" name="LastName" class="form-control" />
+                <label>Country</label>
+                <input type="text" id="txtCountry" name="Country" class="form-control" />
+                <label>Address</label>
+                <input type="text" id="txtAddress" name="Address" class="form-control" />
+                <label>Description</label>
+                <textarea id="txtDescription" name="Description" class="form-control"></textarea>
+                <label>Department</label>
+                @Html.DropDownList("DepartmentId",ViewBag.DepartmentList as SelectList,"Select Department", new { @class = "form-control" })
+                @Html.ActionLink("Add new department","AddDepartment","Department")
+                <br />
+                <label>Active</label>
+                <input type="checkbox" id="chkActive" name="Active"  value="true" />
+                <br />
+                <input type="button" id="btnSave" class="btn-info" value="Save" />
+            </form>
+        </div>
+    </div>
+</div>
