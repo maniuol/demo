@@ -14,5 +14,6 @@ namespace Demo.Pocos
         public bool Active { get; set; }
         [Display(Name ="Users")]
         public int TotalUsers { get; set; }
+
     }
 }
